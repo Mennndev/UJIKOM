@@ -1,3 +1,5 @@
+<?php $base_url = '/UJIKOM'; ?>
+
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <span class="navbar-brand">📚 Toko Buku</span>
@@ -14,28 +16,28 @@
             <ul class="nav nav-pills nav-sidebar flex-column">
 
                 <li class="nav-item">
-                    <a href="../dashboard.php" class="nav-link">
+                    <a href="<?= $base_url ?>/dashboard.php" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="../buku/index.php" class="nav-link">
+                    <a href="<?= $base_url ?>/buku/index.php" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>Data Buku</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="../peminjaman/index.php" class="nav-link">
+                    <a href="<?= $base_url ?>/peminjaman/index.php" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Peminjaman</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="../logout.php" class="nav-link">
+                    <a href="<?= $base_url ?>/logout.php" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>
