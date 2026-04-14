@@ -13,5 +13,7 @@
         $('.table').DataTable();
     });
 </script>
+<script src="/UJIKOM/assets/js/validasi_peminjaman.js"></script>
+<script src="/UJIKOM/assets/js/validasi.js"></script>
 </body>
 </html>

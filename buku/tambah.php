@@ -95,4 +95,5 @@ if(isset($_POST['simpan'])){
     </div>
 </div>
 
+<script src="/UJIKOM/assets/js/validasi.js"></script>
 <?php include '../template/footer.php'; ?>

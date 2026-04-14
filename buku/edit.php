@@ -89,4 +89,5 @@ if(isset($_POST['update'])){
     </div>
 </div>
 
+<script src="/UJIKOM/assets/js/validasi.js"></script>
 <?php include '../template/footer.php'; ?>
