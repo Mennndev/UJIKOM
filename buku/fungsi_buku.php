@@ -3,7 +3,6 @@ include '../koneksi.php';
 
 function getDataBuku() {
     global $conn;
-   //  $data = mysqli_query($conn, "SELECT * FROM buku"); 
 
     $data = mysqli_query($conn, "SELECT buku.*, penerbit.nama AS nama_penerbit 
     FROM buku

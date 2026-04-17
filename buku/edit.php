@@ -2,6 +2,7 @@
 session_start();
 if(!isset($_SESSION['login'])){
     header("Location:../index.php");
+    exit;
 }
 
 include '../koneksi.php';
@@ -38,44 +39,47 @@ if(isset($_POST['update'])){
 
             <div class="form-group">
                 <label>ID Buku</label>
-                <input type="text" name="id_buku" value="<?= $data['id_buku']; ?>" class="form-control" readonly>
+                <input type="text" name="id_buku" id="id_buku" value="<?= htmlspecialchars($data['id_buku']); ?>" class="form-control" readonly>
+                <small id="err_id" class="text-danger"></small>
             </div>
 
             <div class="form-group">
                 <label>Kategori</label>
-                <input type="text" name="kategori" id="kategori" value="<?= $data['kategori']; ?>" class="form-control">
+                <input type="text" name="kategori" id="kategori" value="<?= htmlspecialchars($data['kategori']); ?>" class="form-control">
                 <small id="err_kategori" class="text-danger"></small>
             </div>
 
             <div class="form-group">
                 <label>Nama Buku</label>
-                <input type="text" name="nama_buku" id="nama" value="<?= $data['nama_buku']; ?>" class="form-control">
+                <input type="text" name="nama_buku" id="nama_buku" value="<?= htmlspecialchars($data['nama_buku']); ?>" class="form-control">
                 <small id="err_nama" class="text-danger"></small>
             </div>
 
             <div class="form-group">
                 <label>Harga</label>
-                <input type="text" name="harga" id="harga" value="<?= $data['harga']; ?>" class="form-control">
+                <input type="text" name="harga" id="harga" value="<?= htmlspecialchars($data['harga']); ?>" class="form-control">
                 <small id="err_harga" class="text-danger"></small>
             </div>
 
             <div class="form-group">
                 <label>Stok</label>
-                <input type="text" name="stok" id="stok" value="<?= $data['stok']; ?>" class="form-control">
+                <input type="text" name="stok" id="stok" value="<?= htmlspecialchars($data['stok']); ?>" class="form-control">
                 <small id="err_stok" class="text-danger"></small>
             </div>
 
             <div class="form-group">
                 <label>Penerbit</label>
-                <select name="id_penerbit" id="penerbit" class="form-control">
+                <select name="id_penerbit" id="id_penerbit" class="form-control">
+                    <option value="">--Pilih Penerbit--</option>
                     <?php
-                    $p = mysqli_query($conn,"SELECT * FROM penerbit");
-                    while($d = mysqli_fetch_array($p)){
+                    $p = mysqli_query($conn, "SELECT id_penerbit, nama FROM penerbit ORDER BY nama ASC");
+                    while($d = mysqli_fetch_assoc($p)){
                         $selected = ($d['id_penerbit'] == $data['id_penerbit']) ? "selected" : "";
-                        echo "<option value='$d[id_penerbit]' $selected>$d[nama]</option>";
+                        echo "<option value='".htmlspecialchars($d['id_penerbit'])."' $selected>".htmlspecialchars($d['nama'])."</option>";
                     }
                     ?>
                 </select>
+                <small id="err_penerbit" class="text-danger"></small>
             </div>
 
             <button type="submit" name="update" class="btn btn-warning">

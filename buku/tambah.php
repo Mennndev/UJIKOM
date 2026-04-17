@@ -2,6 +2,7 @@
 session_start();
 if(!isset($_SESSION['login'])){
     header("Location:../index.php");
+    exit;
 }
 
 include '../koneksi.php';
@@ -52,7 +53,7 @@ if(isset($_POST['simpan'])){
 
             <div class="form-group">
                 <label>Nama Buku</label>
-                <input type="text" name="nama_buku" id="nama" class="form-control">
+                <input type="text" name="nama_buku" id="nama_buku" class="form-control">
                 <small id="err_nama" class="text-danger"></small>
             </div>
 
@@ -70,12 +71,12 @@ if(isset($_POST['simpan'])){
 
             <div class="form-group">
                 <label>Penerbit</label>
-                <select name="id_penerbit" id="penerbit" class="form-control">
+                <select name="id_penerbit" id="id_penerbit" class="form-control">
                     <option value="">--Pilih Penerbit--</option>
                     <?php 
-                    $p = mysqli_query($conn, "SELECT * FROM penerbit");
-                    while($d = mysqli_fetch_array($p)){
-                        echo "<option value='$d[id_penerbit]'>$d[nama]</option>";
+                    $p = mysqli_query($conn, "SELECT id_penerbit, nama FROM penerbit ORDER BY nama ASC");
+                    while($d = mysqli_fetch_assoc($p)){
+                        echo "<option value='".htmlspecialchars($d['id_penerbit'])."'>".htmlspecialchars($d['nama'])."</option>";
                     }
                     ?>
                 </select>
