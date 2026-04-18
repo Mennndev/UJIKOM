@@ -41,8 +41,12 @@ if ($tanggalSampai !== '') {
     }
 }
 
-if (empty($errors) && $filterTanggalDari !== null && $filterTanggalSampai !== null && $filterTanggalDari > $filterTanggalSampai) {
-    $errors[] = "Tanggal dari tidak boleh lebih besar dari tanggal sampai.";
+if (empty($errors) && $filterTanggalDari !== null && $filterTanggalSampai !== null) {
+    $tanggalDariObj = DateTime::createFromFormat('Y-m-d', $filterTanggalDari);
+    $tanggalSampaiObj = DateTime::createFromFormat('Y-m-d', $filterTanggalSampai);
+    if ($tanggalDariObj > $tanggalSampaiObj) {
+        $errors[] = "Tanggal dari tidak boleh lebih besar dari tanggal sampai.";
+    }
 }
 
 if (empty($errors)) {

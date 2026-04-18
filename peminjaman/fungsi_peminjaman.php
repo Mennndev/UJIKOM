@@ -20,6 +20,7 @@ function getDataPeminjaman($tanggalDari = null, $tanggalSampai = null)
 
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
+        error_log('Gagal menyiapkan query getDataPeminjaman: ' . mysqli_error($conn));
         return [];
     }
 
