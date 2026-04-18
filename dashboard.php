@@ -13,6 +13,12 @@ $total_buku = mysqli_num_rows($buku);
 // hitung penerbit
 $penerbit = mysqli_query($conn, "SELECT * FROM penerbit");
 $total_penerbit = mysqli_num_rows($penerbit);
+
+$peminjaman = mysqli_query($conn, "SELECT * FROM peminjaman");
+$total_peminjaman = mysqli_num_rows($peminjaman);
+
+$akunpetugas = mysqli_query($conn, "SELECT * FROM akun_petugas");
+$total_petugas = mysqli_num_rows($akunpetugas);
 ?>
 
 <?php include 'template/header.php'; ?>
@@ -48,11 +54,40 @@ $total_penerbit = mysqli_num_rows($penerbit);
             <div class="icon">
                 <i class="fas fa-building"></i>
             </div>
-            <a href="penerbit/index.php" class="small-box-footer">
+        </div>
+    </div>
+
+    <!-- JUMLAH PEMINJAMAN -->
+     <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3><?= $total_peminjaman ?></h3>
+                <p>Data Peminjaman</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-bookmark"></i>
+            </div>
+            <a href="peminjaman/index.php" class="small-box-footer">
                 Lihat <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
-    </div>
+     </div>
+
+     <!-- JUMLAH PETUGAS -->
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3><?= $total_petugas ?></h3>
+                <p>Data Petugas</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
+             <a href="peminjaman/index.php" class="small-box-footer">
+                Lihat <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+      </div>
 
 </div>
 
