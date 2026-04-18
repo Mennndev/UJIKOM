@@ -83,9 +83,6 @@ $total_petugas = mysqli_num_rows($akunpetugas);
             <div class="icon">
                 <i class="fas fa-user-circle"></i>
             </div>
-             <a href="peminjaman/index.php" class="small-box-footer">
-                Lihat <i class="fas fa-arrow-circle-right"></i>
-            </a>
         </div>
       </div>
 

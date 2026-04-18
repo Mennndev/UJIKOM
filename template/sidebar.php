@@ -36,12 +36,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="<?= $base_url ?>/anggota/index.php" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Anggota</p>
-                    </a>
-                </li>
 
                 <li class="nav-item">
                     <a href="<?= $base_url ?>/logout.php" class="nav-link">
