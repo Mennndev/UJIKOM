@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (Throwable $e) {
             mysqli_rollback($conn);
-            error_log("Gagal menyimpan peminjaman: " . $e->getMessage());
+            error_log("Gagal menyimpan peminjaman.");
             $errors[] = "Gagal menyimpan data peminjaman. Silakan coba lagi.";
         }
     }
