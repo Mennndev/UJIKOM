@@ -9,6 +9,10 @@ include '../template/header.php';
 include '../template/sidebar.php';
 include 'fungsi_penerbit.php';
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $data = getDataPenerbit();
 ?>
 
@@ -45,11 +49,13 @@ $data = getDataPenerbit();
                             <a href="edit.php?id=<?= urlencode($d['id_penerbit']); ?>" class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="hapus.php?id=<?= urlencode($d['id_penerbit']); ?>"
-                                class="btn btn-danger btn-sm"
-                                onclick="return confirm('Yakin hapus data?')">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            <form method="POST" action="hapus.php" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($d['id_penerbit']); ?>">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']); ?>">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
