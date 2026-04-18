@@ -145,5 +145,5 @@ $bukuOptions = getBukuOptions();
     </div>
 </div>
 
-<script src="/UJIKOM/assets/js/validasi_peminjaman.js"></script>
+<script src="/UJIKOM/assets/js/validasi_pinjam.js"></script>
 <?php include '../template/footer.php'; ?>
