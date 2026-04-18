@@ -36,6 +36,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="<?= $base_url ?>/penerbit/index.php" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Penerbit</p>
+                    </a>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="<?= $base_url ?>/logout.php" class="nav-link">
