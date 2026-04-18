@@ -30,6 +30,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="<?= $base_url ?>/penerbit/index.php" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Data Penerbit</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="<?= $base_url ?>/peminjaman/index.php" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Peminjaman</p>

@@ -54,6 +54,9 @@ $total_petugas = mysqli_num_rows($akunpetugas);
             <div class="icon">
                 <i class="fas fa-building"></i>
             </div>
+            <a href="penerbit/index.php" class="small-box-footer">
+                Lihat <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
     </div>
 
