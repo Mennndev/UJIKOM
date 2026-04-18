@@ -106,18 +106,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = mysqli_prepare($conn, "INSERT INTO peminjaman (nama_peminjam, id_buku, tgl_pinjam, jumlah) VALUES (?, ?, ?, ?)");
             if (!$stmt) throw new Exception("Gagal menyiapkan simpan peminjaman.");
-            mysqli_stmt_bind_param($stmt, "sssi", $nama_peminjam, $id_buku_insert, $tgl_pinjam, $jumlah_insert);
             foreach ($validRows as $row) {
                 $id_buku_insert = $row['id_buku'];
                 $jumlah_insert = $row['jumlah'];
+                mysqli_stmt_bind_param($stmt, "sssi", $nama_peminjam, $id_buku_insert, $tgl_pinjam, $jumlah_insert);
                 if (!mysqli_stmt_execute($stmt)) throw new Exception("Gagal menyimpan detail peminjaman.");
             }
             mysqli_stmt_close($stmt);
 
             $stmtUpd = mysqli_prepare($conn, "UPDATE buku SET stok = stok - ? WHERE id_buku = ?");
             if (!$stmtUpd) throw new Exception("Gagal menyiapkan update stok.");
-            mysqli_stmt_bind_param($stmtUpd, "is", $jumlah_kurang, $id_buku_kurang); // is
             foreach ($kebutuhanPerBuku as $id_buku_kurang => $jumlah_kurang) {
+                mysqli_stmt_bind_param($stmtUpd, "is", $jumlah_kurang, $id_buku_kurang); // is
                 if (!mysqli_stmt_execute($stmtUpd)) throw new Exception("Gagal mengurangi stok buku.");
             }
             mysqli_stmt_close($stmtUpd);
@@ -245,7 +245,9 @@ $bukuOptions = getBukuOptions();
     updateRemoveButtonState();
 
     addBtn.addEventListener("click", function () {
-        const newRow = template.content.firstElementChild.cloneNode(true);
+        const rowTemplate = template.content.querySelector(".buku-row");
+        if (!rowTemplate) return;
+        const newRow = rowTemplate.cloneNode(true);
         bindRemoveButton(newRow);
         container.appendChild(newRow);
         updateRemoveButtonState();
