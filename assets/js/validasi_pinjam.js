@@ -13,11 +13,13 @@ function validasiForm() {
     let errIdBuku = document.getElementById("err_id_buku");
     let errTgl = document.getElementById("err_tgl_pinjam");
     let errJumlah = document.getElementById("err_jumlah");
+    let errRows = document.getElementById("err_rows");
 
     if (errNama) errNama.innerHTML = "";
     if (errIdBuku) errIdBuku.innerHTML = "";
     if (errTgl) errTgl.innerHTML = "";
     if (errJumlah) errJumlah.innerHTML = "";
+    if (errRows) errRows.innerHTML = "";
 
     if (rowsContainer) {
         rowsContainer.querySelectorAll(".err_id_buku_row").forEach(function (el) { el.innerHTML = ""; });
@@ -42,7 +44,10 @@ function validasiForm() {
     // validasi buku + jumlah
     if (rowsContainer) {
         let rows = rowsContainer.querySelectorAll(".buku-row");
-        if (rows.length === 0) valid = false;
+        if (rows.length === 0) {
+            if (errRows) errRows.innerHTML = "Minimal satu baris buku wajib ada!";
+            valid = false;
+        }
 
         rows.forEach(function (row) {
             let idBukuEl = row.querySelector("select[name='id_buku[]']");

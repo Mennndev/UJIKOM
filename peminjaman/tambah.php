@@ -127,6 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (Throwable $e) {
             mysqli_rollback($conn);
+            error_log("Gagal menyimpan peminjaman: " . $e->getMessage());
             $errors[] = "Gagal menyimpan data peminjaman. Silakan coba lagi.";
         }
     }
@@ -183,6 +184,7 @@ $bukuOptions = getBukuOptions();
                     <?php endforeach; ?>
                 </div>
                 <button type="button" id="btnTambahBuku" class="btn btn-success btn-sm mt-2">+ Tambah Buku</button>
+                <small id="err_rows" class="text-danger d-block"></small>
             </div>
 
             <button type="submit" class="btn btn-primary">Simpan</button>
