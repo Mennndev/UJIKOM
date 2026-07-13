@@ -15,12 +15,22 @@ if ($username === '' || $password === '') {
     exit;
 }
 
-$query = mysqli_query($conn, "SELECT * FROM akun_petugas WHERE username='$username' AND password='$password'");
-$cek = mysqli_num_rows($query);
+$stmt = mysqli_prepare($conn, "SELECT * FROM akun_petugas WHERE username = ? AND password = ? LIMIT 1");
+mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$userData = mysqli_fetch_assoc($result);
 
-if ($cek > 0) {
+if ($userData) {
+    $displayName = trim($userData['nama'] ?? $userData['nama_petugas'] ?? $userData['username'] ?? $username);
+    $role = trim($userData['role'] ?? $userData['level'] ?? $userData['jabatan'] ?? '');
+
     $_SESSION['login'] = true;
     $_SESSION['user'] = $username;
+    $_SESSION['nama'] = $displayName !== '' ? $displayName : $username;
+    if ($role !== '') {
+        $_SESSION['role'] = $role;
+    }
     header("Location: dashboard.php");
     exit;
 } else {
